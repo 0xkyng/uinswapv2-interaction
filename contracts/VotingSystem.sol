@@ -92,7 +92,6 @@ contract VotingSystem {
      */
     function vote(uint candidate) 
         public
-        VotingState
     {
         Voter storage sender = voters[msg.sender];
         require(sender.weight != 0, "Has no right to vote");
@@ -108,7 +107,6 @@ contract VotingSystem {
 
     function winningCandidate() 
         public
-        EndedState
         view
         returns (string memory winnerName_)
     {

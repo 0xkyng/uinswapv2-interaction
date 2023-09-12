@@ -29,7 +29,7 @@ async function main() {
 
  // Removing liquidity
 
-  // await uniswapV2.removeLiquidityETH(uniToken, uniAmountDesired, amountuniMin, amountETHMin, to, deadline)
+  await uniswapV2.removeLiquidityETH(uniToken, uniAmountDesired, amountuniMin, amountETHMin, to, deadline)
 
 
 }
