@@ -1,10 +1,8 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.19;
 
-interface IUniswapV2Router01 {
-    function factory() external pure returns (address);
-    function WETH() external pure returns (address);
-
+interface IUniswap {
+  function factory() external pure returns (address);
     function addLiquidity(
         address tokenA,
         address tokenB,
@@ -43,6 +41,8 @@ interface IUniswapV2Router01 {
         address to,
         uint deadline
     ) external returns (uint amountToken, uint amountETH);
+
+    function getPair(address tokenA, address tokenB) external view returns (address pair);
    
 
     
