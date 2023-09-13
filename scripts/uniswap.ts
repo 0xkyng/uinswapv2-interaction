@@ -28,8 +28,8 @@ async function main() {
  // Removing liquidity
 
   const uniswapV2Factory = await ethers.getContractAt("IUniswapV2Factory", await uniswapV2.factory())
-// const uniswapFactoryAdddress = "0x5c69bee701ef814a2b6a3edd4b1652cb9cc5aa6f"
-
+ // const uniswapFactoryAdddress = "0x5c69bee701ef814a2b6a3edd4b1652cb9cc5aa6f"
+ 
   const pair = await uniswapV2Factory.connect(impersonter).getPair(WETHAddress, UNI)
   const liquidity = await ethers.getContractAt("IERC20", pair)
 
