@@ -12,8 +12,6 @@ async function main() {
 
   const impersonter = await ethers.getImpersonatedSigner(holder)
 
-  const WETH = await ethers.getContractAt("IERC20", WETHAddress)
-
   const uniAmountDesired = ethers.parseEther("20")
   const amountuniMin = ethers.parseEther("0")
   const amountETHMin = ethers.parseEther("0")
@@ -29,7 +27,17 @@ async function main() {
 
  // Removing liquidity
 
-  await uniswapV2.removeLiquidityETH(uniToken, uniAmountDesired, amountuniMin, amountETHMin, to, deadline)
+  const uniswapV2Factory = await ethers.getContractAt("IUniswapV2Factory", await uniswapV2.factory())
+// const uniswapFactoryAdddress = "0x5c69bee701ef814a2b6a3edd4b1652cb9cc5aa6f"
+
+  const pair = await uniswapV2Factory.connect(impersonter).getPair(WETHAddress, UNI)
+  const liquidity = await ethers.getContractAt("IERC20", pair)
+
+  liquidity.connect(impersonter).approve(uniswapV2, ethers.parseEther("20"))
+  
+
+  const removeLiquidity = await uniswapV2.removeLiquidityETH(uniToken, uniAmountDesired, amountuniMin, amountETHMin, to, deadline)
+  await removeLiquidity.wait();
 
 
 }

@@ -2,7 +2,6 @@
 pragma solidity ^0.8.19;
 
 interface IUniswap {
-  function factory() external pure returns (address);
     function addLiquidity(
         address tokenA,
         address tokenB,
@@ -42,10 +41,13 @@ interface IUniswap {
         uint deadline
     ) external returns (uint amountToken, uint amountETH);
 
-    function getPair(address tokenA, address tokenB) external view returns (address pair);
-   
+    function factory() external pure returns (address);
 
     
+}
+
+interface IUniswapV2Factory {
+    function getPair(address tokenA, address tokenB) external view returns(address pair);
 }
 
 
